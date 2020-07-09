@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>   
+    <title>Networked-Aframe Scene</title>    
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+    <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene networked-scene loading-screen="dotsColor: red; backgroundColor: black">      
+
+      <a-assets>
+        <img id="sky" src="castle_village_scene/The Great Salt Lake by Masakazu Matsumoto.jpg">
+        <a-asset-item id="village" src="castle_village_scene/scene.gltf"></a-asset-item>
+        <template id="avatar-template">
+           <a-sphere></a-sphere>
+        </template>
+      </a-assets>
+
+      <!-- avatar -->
+      <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera wasd-controls look-controls>
+      </a-entity>
+
+      <!-- Sky -->
+      <a-sky src="#sky"></a-sky>
+
+      <!-- Camera -->
+      <a-entity position="-3 0 50">
+        <a-camera></a-camera>
+      </a-entity>
+
+      <!-- castle village -->
+      <a-entity gltf-model="#village"></a-entity>
+      
+    </a-scene>
+  </body>
+</html>
