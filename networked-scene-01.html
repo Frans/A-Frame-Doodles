@@ -7,7 +7,17 @@
     <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
   </head>
   <body>
-    <a-scene networked-scene loading-screen="dotsColor: red; backgroundColor: black">      
+    <a-scene networked-scene="serverURL: /;
+  app: Frans-Networked-Scene-01;
+  room: Castle-Village-01;
+  connectOnLoad: true;
+  onConnect: onConnect;
+  adapter: webrtc;
+  audio: yes;
+  debug: false;
+" 
+
+loading-screen="dotsColor: red; backgroundColor: black">      
 
       <a-assets>
         <img id="sky" src="castle_village_scene/The Great Salt Lake by Masakazu Matsumoto.jpg">
@@ -18,7 +28,9 @@
       </a-assets>
 
       <!-- avatar -->
-      <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera wasd-controls look-controls>
+      <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" networked-audio-source camera wasd-controls look-controls>
+        <a-entity camera look-controls networked="template:#head-template;attachTemplateToLocal:false;"></a-entity>
+        
       </a-entity>
 
       <!-- Sky -->
